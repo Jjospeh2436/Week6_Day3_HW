@@ -1,0 +1,13 @@
+/* Shop Page CSS */
+
+
+.shop-header {
+    background-image: url("https://www.pixelstalk.net/wp-content/uploads/images1/Terraria-HD-Wallpaper-Free-download.jpg");
+    background-size: cover;
+    height: 700px;
+    color: white; 
+}
+
+.shop-stats {
+    color: white; 
+}
