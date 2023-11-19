@@ -2,7 +2,7 @@ from flask import Blueprint, flash, redirect, render_template, request
 
 
 #internal import
-from homework_shop.models import Weapon, db
+from homework_shop.models import Weapon, Customer, Order, db
 from homework_shop.forms import WeaponForm
 
 
@@ -15,8 +15,15 @@ site = Blueprint('site', __name__, template_folder='site_templates' )
 def shop():
     
     allweaps = Weapon.query.all()
+    allcustomers = Customer.query.all()
+    allorders= Order.query.all()
 
-    return render_template('shop.html', shop=allweaps) #looking inside our template_folder (site_template) to find the shop.html file
+    shop_stats = {
+        'weapons' : len(allweaps),
+        'sales' : sum([order.order_total for order in allorders]),
+        'customers' : len(allcustomers)
+    }
+    return render_template('shop.html', shop=allweaps, stats=shop_stats) #looking inside our template_folder (site_template) to find the shop.html file
 
 
 @site.route('/shop/create', methods=['GET', 'POST'])
